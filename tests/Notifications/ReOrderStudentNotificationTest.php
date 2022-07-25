@@ -2,10 +2,10 @@
 
 namespace Tests\Notifications;
 
-use Tests\TestCase;
 use App\Models\Admin;
 use App\Notifications\StudentReorder;
 use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class ReOrderStudentNotificationTest extends TestCase
 {

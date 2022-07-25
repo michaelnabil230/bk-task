@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\School;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Http\Requests\UpdateSchoolRequest;
+use App\Models\School;
+use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {

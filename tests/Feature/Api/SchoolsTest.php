@@ -37,7 +37,7 @@ class SchoolsTest extends TestCase
         $school = School::factory()->create();
 
         $this
-            ->putJson('/api/schools/' . $school->id, ['name' => 'Test school'])
+            ->putJson('/api/schools/'.$school->id, ['name' => 'Test school'])
             ->assertStatus(Response::HTTP_ACCEPTED)
             ->assertJsonPath('school.name', 'Test school');
     }
@@ -47,11 +47,11 @@ class SchoolsTest extends TestCase
         $school = School::factory()->create();
 
         $this
-            ->deleteJson('/api/schools/' . $school->id)
+            ->deleteJson('/api/schools/'.$school->id)
             ->assertNoContent();
 
         $this
-            ->getJson('/api/schools/' . $school->id)
+            ->getJson('/api/schools/'.$school->id)
             ->assertNotFound();
     }
 }

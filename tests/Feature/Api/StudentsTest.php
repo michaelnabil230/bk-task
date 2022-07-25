@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Api;
 
-use App\Models\Student;
 use App\Models\School;
+use App\Models\Student;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Tests\TestCase;
@@ -18,7 +18,7 @@ class StudentsTest extends TestCase
 
         Student::factory(20)->create(['school_id' => $school->id]);
 
-        $response = $this->getJson('/api/schools/' . $school->id . '/students');
+        $response = $this->getJson('/api/schools/'.$school->id.'/students');
 
         $responseArray = json_decode($response->getContent());
 
@@ -32,7 +32,7 @@ class StudentsTest extends TestCase
         $school = School::factory()->create();
 
         $this
-            ->postJson('/api/schools/' . $school->id . '/students', ['name' => 'Test student'])
+            ->postJson('/api/schools/'.$school->id.'/students', ['name' => 'Test student'])
             ->assertStatus(Response::HTTP_CREATED)
             ->assertJsonPath('student.name', 'Test student');
     }
@@ -43,7 +43,7 @@ class StudentsTest extends TestCase
         $student = Student::factory()->create(['school_id' => $school->id]);
 
         $this
-            ->putJson('/api/schools/' . $school->id . '/students/' . $student->id, ['name' => 'Test student 2'])
+            ->putJson('/api/schools/'.$school->id.'/students/'.$student->id, ['name' => 'Test student 2'])
             ->assertStatus(Response::HTTP_ACCEPTED)
             ->assertJsonPath('student.name', 'Test student 2');
     }
@@ -54,11 +54,11 @@ class StudentsTest extends TestCase
         $student = Student::factory()->create(['school_id' => $school->id]);
 
         $this
-            ->deleteJson('/api/schools/' . $school->id . '/students/' . $student->id)
+            ->deleteJson('/api/schools/'.$school->id.'/students/'.$student->id)
             ->assertNoContent();
 
         $this
-            ->getJson('/api/schools/' . $school->id . '/students/' . $student->id)
+            ->getJson('/api/schools/'.$school->id.'/students/'.$student->id)
             ->assertNotFound();
     }
 }
