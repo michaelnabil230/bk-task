@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/', 'welcome');
+
+Route::middleware(['auth'])->name('dashboard.')->group(function () {
+    Route::view('dashboard', 'dashboard')->name('index');
+
+    Route::resource('schools', SchoolController::class);
+
+    Route::resource('schools.students', StudentController::class);
 });
+
+require __DIR__.'/auth.php';

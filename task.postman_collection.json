@@ -1,0 +1,432 @@
+{
+	"info": {
+		"_postman_id": "11311c56-7508-4d0f-a718-8c67d534cfd7",
+		"name": "Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8283830"
+	},
+	"item": [
+		{
+			"name": "Schools",
+			"item": [
+				{
+					"name": "Students",
+					"item": [
+						{
+							"name": "Index",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response",
+											"if(response.code == 200) {",
+											"    const studentsId = response.json().schools.data[1].id",
+											"    pm.environment.set('studentsId', studentsId)",
+											"",
+											"    let schoolRandomIndex = Math.floor((Math.random() * 5) + 1);",
+											"    const randomStudentsId = response.json().schools.data[schoolRandomIndex].id",
+											"    pm.environment.set('randomStudentsId', randomStudentsId)",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/schools/{{schoolId}}/students",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schools",
+										"{{schoolId}}",
+										"students"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/schools/{{schoolId}}/students/{{studentsId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schools",
+										"{{schoolId}}",
+										"students",
+										"{{studentsId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"school name\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/schools/{{schoolId}}/students",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schools",
+										"{{schoolId}}",
+										"students"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"required\",\r\n    \"phone\": \"required\",\r\n    \"note\": \"sometimes nullable\",\r\n    \"address\": \"required\",\r\n    \"latitude\": \"required\",\r\n    \"longitude\": \"required\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/schools/{{schoolId}}/students/{{studentsId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schools",
+										"{{schoolId}}",
+										"students",
+										"{{studentsId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/schools/{{schoolId}}/students/{{randomStudentsId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schools",
+										"{{schoolId}}",
+										"students",
+										"{{randomStudentsId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response",
+									"if(response.code == 200) {",
+									"    const schoolId = response.json().schools.data[1].id",
+									"    pm.environment.set('schoolId', schoolId)",
+									"",
+									"    let schoolRandomIndex = Math.floor((Math.random() * 15) + 1);",
+									"    const randomSchoolId = response.json().schools.data[schoolRandomIndex].id",
+									"    pm.environment.set('randomSchoolId', randomSchoolId)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/schools/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schools",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/schools/{{schoolId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schools",
+								"{{schoolId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"school name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/schools",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schools"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"New name school\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/schools/{{schoolId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schools",
+								"{{schoolId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/schools/{{randomSchoolId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schools",
+								"{{randomSchoolId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8000/api"
+		},
+		{
+			"key": "access_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZThjNWViZTE0MGFlOTM3YjUwYzBkN2YwMTYyNDlhYWRlNzNjM2EzZDA1NWI1Zjc0YjMyNjZiMjE2ZTI2MDI0Zjk0M2RkNTcwNzE1NTI0NjEiLCJpYXQiOjE2NDY1ODIyNjQuMDgyMDUzODk5NzY1MDE0NjQ4NDM3NSwibmJmIjoxNjQ2NTgyMjY0LjA4MjA2MDA5ODY0ODA3MTI4OTA2MjUsImV4cCI6MTcwOTc0MDY2NC4wNzUwMzM5MDMxMjE5NDgyNDIxODc1LCJzdWIiOiJkY2RiNTAwOS02NzFmLTQ2NzgtODZkNC01Njg4ZTU0ZmFkNTkiLCJzY29wZXMiOltdfQ.cRRKOjRRW7XZBsabNs5Cdk4IEoyHCU_c3efWyzdc3xcEycXHKIj-vlOjcONL36o_mnrijnlz1_tb_1RcywA81q1oi6UjB3Og04hz-93cwa5Ll6uLkVey4RxtESWuSoCHLfjjlsNsekgaT69WuQA59fcYXqLZVXuj9isS740u1BnjE_nc_qokJOFRJtLrR-IvmEHPSyuqNGY2Q743KCzjsxRqK1BruTuteVgJmJV7feSSxZZPI14CuGaT0dESn2u3LgAzU-Zc99RGupAHuc6YbRo_H8Nh5d5zPTRqUeGIpWzhM072imCtg4bWmKYF7TIJ14n-GKIj-T1tw7s6u47jBS2MueXKLh9WRYJYHDrO4Hwb3lQ9vScMbUMyP2mQ1SdAMQOOYPayBFjIGEPrSZaJLCYYywm0grPsYuch79ZjrC7gI7PmopI7vYAJ73Nafz2U69Kx--hUnKbd4jKcvM_3rwKNDp_YdkoUWiWy9HT5_4r2K4v9IYXpJzU45FNfruGV9VtSte4Ieh_XtLpNEU7gWDfHRDH0JlOt6TbVhCoyMUDbbX4KjWSSck4P0EWKS56YghgzrNwKYGvmNWVufZv0eLSL8zGf7zxaY8GCfaOe7FzFqL3XnPiCLkM2PqzpWZYNksEQVtvJeeBQIrcqRX4Vfy8hFjqZlRPC0qko3hW2bgA",
+			"type": "string"
+		}
+	]
+}
