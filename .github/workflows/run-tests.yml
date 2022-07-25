@@ -22,19 +22,23 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
 
-      - name: create db
+      - name: Create Database
         run: |
-          sudo /etc/init.d/mysql start
-          mysql  -u root -proot -e 'CREATE DATABASE IF NOT EXISTS shaghf_test;'
+          mkdir -p database
+          touch database/database.sqlite
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
 
-      # - name: Cache yarn dependencies
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: node_modules
-      #     key: yarn-${{ hashFiles('yarn.lock') }}
+      - name: Cache yarn dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
 
-      # - name: Run yarn
-      #   run: yarn && yarn dev
+      - name: Run yarn
+        run: yarn && yarn build
 
       - name: Run composer install
         run: composer install -n --prefer-dist
