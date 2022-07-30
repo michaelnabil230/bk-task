@@ -5,7 +5,7 @@
 Clone the repo locally:
 
 ```sh
-git clone https://github.com/michaelnabil230/tk-task.git filament-demo && cd tk-task
+git clone https://github.com/michaelnabil230/tk-task.git && cd tk-task
 ```
 
 Install PHP dependencies:
